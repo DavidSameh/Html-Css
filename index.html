@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caroline 💖</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle at top, #2a0015, #000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    text-align: center;
+    position: relative;
+    transition: background 2s ease;
+  }
+
+  .hidden { display: none; }
+
+  .start-btn {
+    padding: 18px 42px;
+    font-size: 22px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #ff66b2, #ff1744);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 20px #ff66b2;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .start-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px #ff99cc;
+  }
+
+  .hearts {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    overflow: hidden; z-index: 0;
+  }
+
+  .hearts span {
+    position: absolute;
+    display: block;
+    color: #ffb6c1;
+    animation: float 10s linear infinite, colorShift 6s ease-in-out infinite alternate;
+    bottom: -10%;
+    text-shadow: 0 0 10px #ff4d6d, 0 0 25px #ff1744;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-120vh) scale(1.3); opacity: 0; }
+  }
+
+  @keyframes colorShift {
+    0% { color: #ff9ecf; text-shadow: 0 0 10px #ff5fa2, 0 0 25px #ff004c; }
+    100% { color: #ff1e1e; text-shadow: 0 0 15px #ff4d4d, 0 0 30px #ff0000; }
+  }
+
+  .name {
+    font-size: 60px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    letter-spacing: 5px;
+    color: #ff9ff3;
+    text-shadow: 0 0 15px #ff79c6, 0 0 25px #ff4dc4, 0 0 45px #ff008c, 0 0 60px #ff66b2;
+    z-index: 1;
+  }
+
+  .letter {
+    display: inline-block;
+    opacity: 0;
+    transform: scale(1.6);
+    animation: appear 0.35s forwards;
+  }
+
+  @keyframes appear { to { opacity: 1; transform: scale(1); } }
+
+  .paragraph {
+    max-width: 650px;
+    line-height: 1.8;
+    margin-top: 10px;
+    font-size: 17px;
+    color: #ffe2f8;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    z-index: 1;
+  }
+
+  .line {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 1.2s ease;
+  }
+
+  .line.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .btn {
+    margin-top: 30px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #ff6ec7, #ff1744);
+    color: #2a0015;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ff79c6, 0 0 25px #ff4dc4;
+    transition: 0.3s;
+    z-index: 1;
+  }
+
+  .btn:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 25px #ff9ff3, 0 0 50px #ff4dc4;
+  }
+
+  @media (max-width: 600px) {
+    .name { font-size: 42px; }
+    .paragraph { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- الزر اللي بيبدأ كل حاجة -->
+<div id="startScreen">
+  <button class="start-btn" id="startBtn">💖 Start 💖</button>
+</div>
+
+<!-- الصفحة المخفية لحد ما تدوس -->
+<div id="mainContent" class="hidden">
+  <audio id="bgMusic" loop>
+    <source src="Love.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="hearts" id="hearts"></div>
+  <div class="name" id="name"></div>
+
+  <div class="paragraph" id="paragraph">
+    <div class="line">Caroline… I know I hurt you, and I know I was careless when all you needed was my love.</div>
+    <div class="line">You were always there for me, and I took it for granted.</div>
+    <div class="line">But believe me, not a single day passes without me wishing I could go back and make things right.</div>
+    <div class="line">I’ve changed, Caroline. I want to be the man who makes you smile every morning and holds you every night.</div>
+    <div class="line">I promise you, one day soon, I’ll ask you to be my wife… because you’re the only one I want to marry. 💍❤️</div>
+  </div>
+
+  <button class="btn" id="replay">💞 Replay 💞</button>
+</div>
+
+<script>
+  const startBtn = document.getElementById('startBtn');
+  const startScreen = document.getElementById('startScreen');
+  const mainContent = document.getElementById('mainContent');
+  const nameEl = document.getElementById('name');
+  const lines = document.querySelectorAll('.line');
+  const replayBtn = document.getElementById('replay');
+  const heartsContainer = document.getElementById('hearts');
+  const bgMusic = document.getElementById('bgMusic');
+  const text = "Caroline";
+  let index = 0;
+
+  function createHearts() {
+    heartsContainer.innerHTML = "";
+    for (let i = 0; i < 18; i++) {
+      const span = document.createElement('span');
+      span.innerHTML = '❤';
+      span.style.left = Math.random() * 100 + '%';
+      span.style.fontSize = Math.random() * 20 + 15 + 'px';
+      span.style.animationDelay = Math.random() * 10 + 's';
+      heartsContainer.appendChild(span);
+    }
+  }
+
+  function createLetter(char) {
+    const span = document.createElement('span');
+    span.classList.add('letter');
+    span.textContent = char;
+    return span;
+  }
+
+  function typeText() {
+    nameEl.innerHTML = "";
+    lines.forEach(l => l.classList.remove('show'));
+    index = 0;
+
+    const interval = setInterval(() => {
+      const letter = createLetter(text[index]);
+      nameEl.appendChild(letter);
+      index++;
+      if (index === text.length) {
+        clearInterval(interval);
+        showParagraph();
+      }
+    }, 300);
+  }
+
+  function showParagraph() {
+    lines.forEach((line, i) => {
+      setTimeout(() => line.classList.add('show'), i * 1300);
+    });
+  }
+
+  replayBtn.addEventListener('click', () => {
+    createHearts();
+    typeText();
+    bgMusic.currentTime = 0;
+    bgMusic.play();
+  });
+
+  startBtn.addEventListener('click', () => {
+    startScreen.classList.add('hidden');
+    mainContent.classList.remove('hidden');
+    document.body.style.background = 'radial-gradient(circle at top, #ff4d88, #2a0015 80%)';
+    bgMusic.play();
+    createHearts();
+    typeText();
+  });
+</script>
+<audio autoplay loop src="Love.mp3"></audio>
+
+</body>
+</html>
