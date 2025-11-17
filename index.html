@@ -1,234 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Caroline 💖</title>
-<style>
-  body {
-    margin: 0;
-    height: 100vh;
-    overflow: hidden;
-    background: radial-gradient(circle at top, #2a0015, #000);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-family: 'Poppins', sans-serif;
-    color: white;
-    text-align: center;
-    position: relative;
-    transition: background 2s ease;
-  }
-
-  .hidden { display: none; }
-
-  .start-btn {
-    padding: 18px 42px;
-    font-size: 22px;
-    border: none;
-    border-radius: 50px;
-    background: linear-gradient(90deg, #ff66b2, #ff1744);
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 20px #ff66b2;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .start-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 40px #ff99cc;
-  }
-
-  .hearts {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    overflow: hidden; z-index: 0;
-  }
-
-  .hearts span {
-    position: absolute;
-    display: block;
-    color: #ffb6c1;
-    animation: float 10s linear infinite, colorShift 6s ease-in-out infinite alternate;
-    bottom: -10%;
-    text-shadow: 0 0 10px #ff4d6d, 0 0 25px #ff1744;
-  }
-
-  @keyframes float {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(-120vh) scale(1.3); opacity: 0; }
-  }
-
-  @keyframes colorShift {
-    0% { color: #ff9ecf; text-shadow: 0 0 10px #ff5fa2, 0 0 25px #ff004c; }
-    100% { color: #ff1e1e; text-shadow: 0 0 15px #ff4d4d, 0 0 30px #ff0000; }
-  }
-
-  .name {
-    font-size: 60px;
-    font-weight: 700;
-    margin-bottom: 25px;
-    letter-spacing: 5px;
-    color: #ff9ff3;
-    text-shadow: 0 0 15px #ff79c6, 0 0 25px #ff4dc4, 0 0 45px #ff008c, 0 0 60px #ff66b2;
-    z-index: 1;
-  }
-
-  .letter {
-    display: inline-block;
-    opacity: 0;
-    transform: scale(1.6);
-    animation: appear 0.35s forwards;
-  }
-
-  @keyframes appear { to { opacity: 1; transform: scale(1); } }
-
-  .paragraph {
-    max-width: 650px;
-    line-height: 1.8;
-    margin-top: 10px;
-    font-size: 17px;
-    color: #ffe2f8;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    z-index: 1;
-  }
-
-  .line {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 1.2s ease;
-  }
-
-  .line.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .btn {
-    margin-top: 30px;
-    padding: 12px 28px;
-    border: none;
-    border-radius: 50px;
-    background: linear-gradient(90deg, #ff6ec7, #ff1744);
-    color: #2a0015;
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 0 0 15px #ff79c6, 0 0 25px #ff4dc4;
-    transition: 0.3s;
-    z-index: 1;
-  }
-
-  .btn:hover {
-    transform: scale(1.07);
-    box-shadow: 0 0 25px #ff9ff3, 0 0 50px #ff4dc4;
-  }
-
-  @media (max-width: 600px) {
-    .name { font-size: 42px; }
-    .paragraph { font-size: 15px; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Index.css">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="bootstrap.js">
+    <title>Capstone</title>
 </head>
+
+
 <body>
 
-<!-- الزر اللي بيبدأ كل حاجة -->
-<div id="startScreen">
-  <button class="start-btn" id="startBtn">💖 Start 💖</button>
-</div>
+  <style> 
+    html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #007c15a2, #1c863c, #007c15a2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  overflow: hidden;
+}
 
-<!-- الصفحة المخفية لحد ما تدوس -->
-<div id="mainContent" class="hidden">
-  <audio id="bgMusic" loop>
-    <source src="Love.mp3" type="audio/mpeg">
-  </audio>
+form {
+  width: 500px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 40px 50px;
+  box-shadow: 0 0 40px rgba(0, 200, 255, 0.3),
+              0 0 80px rgba(255, 0, 200, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  text-align: center;
+}
 
-  <div class="hearts" id="hearts"></div>
-  <div class="name" id="name"></div>
+h2 {
+  margin-bottom: 25px;
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #000000, #000000, #000000);
+  -webkit-background-clip: text;
+  text-shadow: red;
+  -webkit-text-fill-color: transparent;
+}
 
-  <div class="paragraph" id="paragraph">
-    <div class="line">Caroline… I know I hurt you, and I know I was careless when all you needed was my love.</div>
-    <div class="line">You were always there for me, and I took it for granted.</div>
-    <div class="line">But believe me, not a single day passes without me wishing I could go back and make things right.</div>
-    <div class="line">I’ve changed, Caroline. I want to be the man who makes you smile every morning and holds you every night.</div>
-    <div class="line">I promise you, one day soon, I’ll ask you to be my wife… because you’re the only one I want to marry. 💍❤️</div>
-  </div>
+h3 {
+  margin: 25px 0 15px;
+  font-size: 20px;
+  color: #000000;
+}
 
-  <button class="btn" id="replay">💞 Replay 💞</button>
-</div>
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 16px 18px;
+  margin: 14px 0;
+  font-size: 16px;
+  color: #000000;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+input:focus {
+  border-color: #00ff9d;
+  box-shadow: 0 0 20px #00f0ff;
+}
+
+label {
+  font-size: 16px;
+  margin: 0 8px;
+  color: #ddd;
+}
+
+input[type="radio"] {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #aaa;
+  background: transparent;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  vertical-align: middle;
+}
+
+input[type="radio"]:checked {
+  border-color: #91ff00;
+  background: radial-gradient(circle, #007c15a2 0%, #5e5e5e 100%);
+  box-shadow: 0 0 12px #ffffff;
+}
+
+input[type="submit"] {
+  margin-top: 25px;
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  background: linear-gradient(90deg, #00b94d, #00b94d, #00b94d);
+  color: #fff;
+  letter-spacing: 1px;
+  box-shadow: 0 0 25px rgba(52, 2, 190, 0.4),
+              0 0 50px rgba(32, 46, 42, 0.3);
+  transition: all 0.25s ease;
+}
+
+input[type="submit"]:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 35px rgba(3, 209, 72, 0.6),
+              0 0 60px rgba(76, 109, 70, 0.5);
+}
+
+input[type="submit"]:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+.themeToggle {
+  background: #111;
+  color: #fff;
+}
+
+.themeToggleform {
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+}
+
+.themeToggle input {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+  </style>
+<img src="./the-great-pyramid-3840x2743-17735.jpg" style=" position: fixed;  top: 0;left: 0;width: 100%;height: 100%;z-index: -2; " />
+    
+    
+    
+    <center>
+
+    
+<font color="White"><h1>Eva Recycle</h1></font>
+<br>
+    
+<form action="C:/Users/~D_I_V_O~/OneDrive/Documents/Eva/Html%20&%20Css/Training/New%20folder/training.html" method="get">
+<h1><font color="Green">Login</font></h1>
+<br>
+<h2>
+<input autofocus type="text" placeholder="Full name" required/><br/>
+
+<input type="email" placeholder="Email" required/><br/>
+
+
+<input type="password" placeholder="Password" required/><br/>
+
+<input type="password" placeholder="phone" required/><br/>
+</h2>
+<br>
+
+
+<label><font color ="Black">Male</font></label>
+<input type="radio" value="Male" name="gender?" required/>
+
+<label><font color ="Black">Female</font></label>
+<input type="radio" value="Female" name="gender?" required/>
+
+<input type="submit" value="Submit"/>
+</form>
+
+</center>
+
+    <script src="bootstrap.js"></script>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="popper.min.js"></script>
+
+    </center>
+
+<script src="bootstrap.js"></script>
+<script src="jquery-3.7.1.min.js"></script>
+<script src="popper.min.js"></script>
 
 <script>
-  const startBtn = document.getElementById('startBtn');
-  const startScreen = document.getElementById('startScreen');
-  const mainContent = document.getElementById('mainContent');
-  const nameEl = document.getElementById('name');
-  const lines = document.querySelectorAll('.line');
-  const replayBtn = document.getElementById('replay');
-  const heartsContainer = document.getElementById('hearts');
-  const bgMusic = document.getElementById('bgMusic');
-  const text = "Caroline";
-  let index = 0;
+  const toggle = document.getElementById("themeToggle");
 
-  function createHearts() {
-    heartsContainer.innerHTML = "";
-    for (let i = 0; i < 18; i++) {
-      const span = document.createElement('span');
-      span.innerHTML = '❤';
-      span.style.left = Math.random() * 100 + '%';
-      span.style.fontSize = Math.random() * 20 + 15 + 'px';
-      span.style.animationDelay = Math.random() * 10 + 's';
-      heartsContainer.appendChild(span);
-    }
-  }
-
-  function createLetter(char) {
-    const span = document.createElement('span');
-    span.classList.add('letter');
-    span.textContent = char;
-    return span;
-  }
-
-  function typeText() {
-    nameEl.innerHTML = "";
-    lines.forEach(l => l.classList.remove('show'));
-    index = 0;
-
-    const interval = setInterval(() => {
-      const letter = createLetter(text[index]);
-      nameEl.appendChild(letter);
-      index++;
-      if (index === text.length) {
-        clearInterval(interval);
-        showParagraph();
-      }
-    }, 300);
-  }
-
-  function showParagraph() {
-    lines.forEach((line, i) => {
-      setTimeout(() => line.classList.add('show'), i * 1300);
-    });
-  }
-
-  replayBtn.addEventListener('click', () => {
-    createHearts();
-    typeText();
-    bgMusic.currentTime = 0;
-    bgMusic.play();
-  });
-
-  startBtn.addEventListener('click', () => {
-    startScreen.classList.add('hidden');
-    mainContent.classList.remove('hidden');
-    document.body.style.background = 'radial-gradient(circle at top, #ff4d88, #2a0015 80%)';
-    bgMusic.play();
-    createHearts();
-    typeText();
+  toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
   });
 </script>
-<audio autoplay loop src="Love.mp3"></audio>
+
+</body>
+</html>
+
 
 </body>
 </html>
